@@ -126,4 +126,4 @@ Two sample excel files have been added into this repo as an example
 
 ### Other
 ---
-This project is still in it's infancy stages. Please check back often for updates as we find/address issues! 
+This project is still in it's infancy stages. Please check back often for updates as we find/address issues!
