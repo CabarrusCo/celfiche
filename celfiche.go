@@ -107,17 +107,17 @@ func validateExcel(e *excelize.File) ([]formData, error) {
 
 		labelName, err := e.GetCellValue("Sheet1", labelCell)
 		if err != nil {
-			return nil, fmt.Errorf("Error occured on line %v %v", cellLine, err)
+			return nil, fmt.Errorf("Error occurred on line %v %v", cellLine, err)
 		}
 
 		variableName, err := e.GetCellValue("Sheet1", variableCell)
 		if err != nil {
-			return nil, fmt.Errorf("Error occured on line %v %v", cellLine, err)
+			return nil, fmt.Errorf("Error occurred on line %v %v", cellLine, err)
 		}
 
 		className, err := e.GetCellValue("Sheet1", classNameCell)
 		if err != nil {
-			return nil, fmt.Errorf("Error occured on line %v %v", cellLine, err)
+			return nil, fmt.Errorf("Error occurred on line %v %v", cellLine, err)
 		}
 
 		typeName, err := e.GetCellValue("Sheet1", typeCell)
@@ -137,7 +137,7 @@ func validateExcel(e *excelize.File) ([]formData, error) {
 
 		iterationString, err := e.GetCellValue("Sheet1", iterationCell)
 		if err != nil {
-			return nil, fmt.Errorf("Error occured on line %v %v", cellLine, err)
+			return nil, fmt.Errorf("Error occurred on line %v %v", cellLine, err)
 		}
 
 		if len(labelName) == 0 {
@@ -146,7 +146,7 @@ func validateExcel(e *excelize.File) ([]formData, error) {
 		}
 
 		if len(typeName) == 0 {
-			return nil, fmt.Errorf("Error occured on line %v. Type name cannot be blank", cellLine)
+			return nil, fmt.Errorf("Error occurred on line %v. Type name cannot be blank", cellLine)
 		}
 
 		if typeName == "Multi-line" {
@@ -180,7 +180,7 @@ func validateExcel(e *excelize.File) ([]formData, error) {
 		if len(iterationString) > 0 {
 			iterationInt, err := strconv.Atoi(iterationString)
 			if err != nil {
-				return nil, fmt.Errorf("Error occured on line %v, %v", cellLine, err)
+				return nil, fmt.Errorf("Error occurred on line %v, %v", cellLine, err)
 			}
 
 			if iterationInt <= 0 {
