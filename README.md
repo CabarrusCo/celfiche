@@ -92,7 +92,7 @@ func main() {
 		return
 	}
 
-    defer cf.Stop()
+        defer cf.Stop()
 
 	username := "MySecurelyStoredUsername"
 	password := "MySecurelyStoredPassword"
