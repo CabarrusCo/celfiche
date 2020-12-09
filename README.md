@@ -39,7 +39,7 @@ When spinning up a new client, you must pass the URL of your forms home screen a
 ```
 
 ### Logging in
-After spinning up a new client, you have to instruct Fischex to login. It's up to you to store your credentials securely.
+After spinning up a new client, you have to instruct celfiche to login. It's up to you to store your credentials securely.
 
 ```
 	username := "MySercurelyStoredUsername"
