@@ -12,8 +12,8 @@ import (
 
 type celfiche struct {
 	pw      *playwright.Playwright
-	browser *playwright.Browser
-	page    *playwright.Page
+	browser playwright.Browser
+	page    playwright.Page
 }
 
 type formData struct {
