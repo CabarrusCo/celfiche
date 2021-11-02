@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/360EntSecGroup-Skylar/excelize/v2"
 	"github.com/mxschmitt/playwright-go"
+	"github.com/xuri/excelize/v2"
 )
 
 type celfiche struct {
@@ -47,7 +47,7 @@ func NewClient(url string, headless bool) (*celfiche, error) {
 	}
 
 	pgOpts := playwright.PageGotoOptions{
-		WaitUntil: playwright.String("networkidle"),
+		WaitUntil: playwright.WaitUntilStateNetworkidle,
 	}
 
 	_, err = page.Goto(url, pgOpts)
@@ -55,17 +55,14 @@ func NewClient(url string, headless bool) (*celfiche, error) {
 		return nil, err
 	}
 
-	var c celfiche
-
-	c.pw = pw
-	c.browser = browser
-	c.page = page
-
-	return &c, nil
-
+	return &celfiche{
+		pw:      pw,
+		browser: browser,
+		page:    page,
+	}, nil
 }
 
-func (c celfiche) Login(username string, password string) error {
+func (c *celfiche) Login(username string, password string) error {
 	err := c.page.Type("#UserName", username)
 	if err != nil {
 		return err
@@ -204,9 +201,9 @@ func validateExcel(e *excelize.File) ([]formData, error) {
 	return finalForm, nil
 }
 
-func (c celfiche) ConvertExcel(formURL string, excelPath string, pauseSleep int) error {
+func (c *celfiche) ConvertExcel(formURL string, excelPath string, pauseSleep int) error {
 	pgOpts := playwright.PageGotoOptions{
-		WaitUntil: playwright.String("networkidle"),
+		WaitUntil: playwright.WaitUntilStateNetworkidle,
 	}
 
 	_, err := c.page.Goto(formURL, pgOpts)
@@ -267,7 +264,7 @@ func (c celfiche) ConvertExcel(formURL string, excelPath string, pauseSleep int)
 	return nil
 }
 
-func (c celfiche) Stop() error {
+func (c *celfiche) Stop() error {
 	err := c.browser.Close()
 	if err != nil {
 		return fmt.Errorf("There was a problem shutting down celfiche %v", err)
