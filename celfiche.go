@@ -82,14 +82,11 @@ func (c *celfiche) Login(username string, password string) error {
 }
 
 func validateExcel(e *excelize.File) ([]formData, error) {
-
 	consecutiveBlanks := 0
 	cellLine := 2
 	finalForm := make([]formData, 0)
 
 	for {
-		var f formData
-
 		if consecutiveBlanks >= 2 {
 			break
 		}
@@ -146,6 +143,8 @@ func validateExcel(e *excelize.File) ([]formData, error) {
 			return nil, fmt.Errorf("Error occurred on line %v. Type name cannot be blank", cellLine)
 		}
 
+		var f formData
+
 		if typeName == "Multi-line" {
 
 			f.MultiLineHeight = 3
@@ -162,7 +161,6 @@ func validateExcel(e *excelize.File) ([]formData, error) {
 		}
 
 		if typeName == "Radio Button" || typeName == "Checkbox" || typeName == "Drop-down" {
-
 			if len(optionsValue) > 0 {
 				optionsValueSplit := strings.Split(optionsValue, "|")
 
