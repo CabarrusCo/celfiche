@@ -63,17 +63,17 @@ func NewClient(url string, headless bool) (*celfiche, error) {
 }
 
 func (c *celfiche) Login(username string, password string) error {
-	err := c.page.Type("#UserName", username)
+	err := c.page.Type("#nameField", username)
 	if err != nil {
 		return err
 	}
 
-	err = c.page.Type("#Password", password)
+	err = c.page.Type("#passwordField", password)
 	if err != nil {
 		return err
 	}
 
-	err = c.page.Click("#submit")
+	err = c.page.Click("#loginBtn")
 	if err != nil {
 		return err
 	}
@@ -161,6 +161,7 @@ func validateExcel(e *excelize.File) ([]formData, error) {
 		}
 
 		if typeName == "Radio Button" || typeName == "Checkbox" || typeName == "Drop-down" {
+
 			if len(optionsValue) > 0 {
 				optionsValueSplit := strings.Split(optionsValue, "|")
 
